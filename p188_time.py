@@ -14,17 +14,39 @@ def print_time(time_obj):
     print('%.2d:%.2d:%.2d' % (time_obj.h, time_obj.m, time_obj.s))
 
 
+def time2secs(t0):
+    """ Converts a Time object to seconds.
+        Output: integer """
+
+    return t0.h * 3600 + t0.m * 60 + t0.s
+
+
+def secs2time(secs):
+    """ Converts seconds into a Time object.
+        Output: Time object """
+
+    return Time((secs // 3600) % 24, (secs % 3600) // 60, secs % 60)
+
+
 def is_after(t1, t2):
     """ Checks if the first of two time objects happens chronologically after the second.
         Output: Boolean """
 
-    return (t1.h > t2.h) or (t1.h == t2.h and t1.m > t2.m) or (t1.h == t2.h and t1.m == t2.m and t1.s > t2.s)
+    return time2secs(t1) > time2secs(t2)
 
 
-time1 = Time(22, 5, 14)
-time2 = Time(22, 5, 14)
+def add_time(t1, t2):
+    """ Adds two time objects.
+        Output: a Time object """
 
+    return secs2time(time2secs(t1) + time2secs(t2))
+
+
+time1 = Time(2, 29, 50)
 print_time(time1)
+
+time2 = Time(1, 30, 10)
 print_time(time2)
 
 print(is_after(time1, time2))
+print_time(add_time(time1, time2))
