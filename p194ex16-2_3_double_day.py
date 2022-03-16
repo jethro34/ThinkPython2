@@ -8,7 +8,7 @@ def double_day(bd1, bd2):
     """ Takes two DOB Date objects and returns their Double Day.
         Output: Date object """
 
-    if bd2 < bd1:                           # ordering & swapping the DOBs if not chronological
+    if bd2 < bd1:                       # ordering & swapping the DOBs if not chronological
         bd1, bd2 = bd2, bd1
 
     td = bd2 - bd1                      # finding timedelta
